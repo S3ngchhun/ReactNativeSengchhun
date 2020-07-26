@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import Icon from 'react-native-ionicons';
 
-export function NewsCard({news}) {
-  const {date, title, source} = news;
+const NewsCard = ({news}) => {
+  const {date, title, source, navigation} = news;
   return (
     <View style={styles.container}>
       <Image
@@ -18,9 +18,15 @@ export function NewsCard({news}) {
         </View>
         <Text style={styles.source}>{source}</Text>
       </View>
+      <Button
+        onPress={() => {
+          navigation.navigate('DetailScreen', news);
+        }}
+        title="Read"
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -58,3 +64,4 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+export default NewsCard;
